@@ -25,7 +25,7 @@ This fork contains the following improvements.
 Installation
 ------------
 
-1. `git submodule add https://ThePixelDeveloper@github.com/ThePixelDeveloper/kohana-twig.git modules/twig`
+1. `git submodule add git://github.com/nexeck/kohana-twig.git modules/twig`
 2. `cd modules/twig && git submodule update --init`
 3. Enable twig in your bootstrap.php file
 4. Extend `Controller`
@@ -48,7 +48,4 @@ Pretty similar to using the Controller\_Template class.
 Not Happy?
 ---------
 
-Either [file a bug report](http://github.com/ThePixelDeveloper/kohana-twig/issues)
-or try an alternative project:
-
-* [kotwig](http://github.com/Burgestrand/kotwig) by [Burgestrand](http://github.com/Burgestrand)
+[file a bug report](git://github.com/nexeck/kohana-twig/issues)

@@ -28,6 +28,8 @@ abstract class Kohana_Controller_Template_Twig extends Controller {
 	 */
 	public function before()
 	{
+		parent::before();
+
 		if (empty($this->template))
 		{
 			// Generate a template name if one wasn't set.
@@ -49,8 +51,6 @@ abstract class Kohana_Controller_Template_Twig extends Controller {
 			// Return the twig environment
 			$this->environment = $this->template->environment();
 		}
-
-		return parent::before();
 	}
 
 	/**
@@ -66,7 +66,7 @@ abstract class Kohana_Controller_Template_Twig extends Controller {
 			$this->response->body($this->template);
 		}
 
-		return parent::after();
+		parent::after();
 	}
 
 } // End Controller_Twig

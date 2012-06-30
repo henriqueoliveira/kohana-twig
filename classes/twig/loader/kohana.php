@@ -39,7 +39,7 @@ class Twig_Loader_Kohana implements Twig_LoaderInterface
    * Returns true if the template is still fresh.
    *
    * @param string    $name The template name
-   * @param timestamp $time The last modification time of the cached template
+   * @param integer $time The last modification time of the cached template
    */
   public function isFresh($name, $time)
   {
@@ -63,7 +63,7 @@ class Twig_Loader_Kohana implements Twig_LoaderInterface
 		$file = pathinfo($name);
 		
 		// Full path to the file.
-		$path = Kohana::find_file('views', $file['dirname'].DIRECTORY_SEPARATOR.$file['filename'], $file['extension']);
+		$path = Kohana::find_file('templates', $file['dirname'].DIRECTORY_SEPARATOR.$file['filename'], $file['extension']);
 
 		if (FALSE === $path)
 		{
@@ -72,4 +72,5 @@ class Twig_Loader_Kohana implements Twig_LoaderInterface
 
 		return $this->cache[$name] = $path;
   }
+
 }

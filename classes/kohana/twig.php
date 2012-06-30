@@ -19,7 +19,7 @@ abstract class Kohana_Twig
 	 * @param string $file 
 	 * @param string $data 
 	 * @param string $env 
-	 * @return void
+	 * @return Twig
 	 * @author Jonathan Geiger
 	 */
 	public static function factory($file = NULL, $data = NULL, $env = 'default')
@@ -39,9 +39,8 @@ abstract class Kohana_Twig
 	 * 
 	 * The global data persists across environments.
 	 *
-	 * @param	string	 variable name or an array of variables
-	 * @param	mixed	 value
-	 * @return	View
+	 * @param	string|array $key	 variable name or an array of variables
+	 * @param	mixed $value	 value
 	 */
 	public static function set_global($key, $value = NULL)
 	{
@@ -61,8 +60,8 @@ abstract class Kohana_Twig
 	/**
 	 * Assigns a global variable by reference, similar to the bind() method.
 	 *
-	 * @param	string	 variable name
-	 * @param	mixed	 referenced variable
+	 * @param	string $key variable name
+	 * @param	mixed $value referenced variable
 	 * @return	View
 	 */
 	public static function bind_global($key, & $value)
@@ -89,13 +88,15 @@ abstract class Kohana_Twig
 	 * @var string The environment the view is attached to
 	 */
 	protected $_environment;
-	
-	/**
-	 * Constructor
-	 *
-	 * @param array $data 
-	 * @author Jonathan Geiger
-	 */
+
+    /**
+     * Constructor
+     *
+     * @param null $file
+     * @param array $data
+     * @param string $env
+     * @author Jonathan Geiger
+     */
 	public function __construct($file = NULL, $data = NULL, $env = 'default')
 	{
 		if ($file !== NULL)
@@ -131,7 +132,7 @@ abstract class Kohana_Twig
 	/**
 	 * Magic method. See get()
 	 *
-	 * @param	string	variable name
+	 * @param	string $key	variable name
 	 * @return	mixed
 	 */
 	public function &__get($key)
@@ -142,8 +143,8 @@ abstract class Kohana_Twig
 	/**
 	 * Magic method, calls set() with the same parameters.
 	 *
-	 * @param	string	variable name
-	 * @param	mixed	value
+	 * @param	string $key	variable name
+	 * @param	mixed $value	value
 	 * @return	void
 	 */
 	public function __set($key, $value)
@@ -154,7 +155,7 @@ abstract class Kohana_Twig
 	/**
 	 * Magic method, determines if a variable is set and is not NULL.
 	 *
-	 * @param   string  variable name
+	 * @param   string $key variable name
 	 * @return  boolean
 	 */
 	public function __isset($key)
@@ -165,7 +166,7 @@ abstract class Kohana_Twig
 	/**
 	 * Magic method, unsets a given variable.
 	 *
-	 * @param   string  variable name
+	 * @param   string $key  variable name
 	 * @return  void
 	 */
 	public function __unset($key)
@@ -198,8 +199,8 @@ abstract class Kohana_Twig
 	 * Sets the view filename.
 	 *
 	 * @throws  View_Exception
-	 * @param   string  filename
-	 * @return  View
+	 * @param   string $file  filename
+	 * @return  Twig
 	 */
 	public function set_filename($file)
 	{
@@ -219,7 +220,7 @@ abstract class Kohana_Twig
 	 * Sets a file exension
 	 *
 	 * @param string $extension 
-	 * @return void
+	 * @return Twig
 	 * @author Jonathan Geiger
 	 */
 	public function set_extension($extension)
@@ -304,14 +305,15 @@ abstract class Kohana_Twig
 	{
 		return $this->_environment;
 	}
-	
-	/**
-	 * Searches for the given variable and returns its value.
-	 * Local variables will be returned before global variables.
-	 *
-	 * @param	string	variable name
-	 * @return	mixed
-	 */
+
+    /**
+     * Searches for the given variable and returns its value.
+     * Local variables will be returned before global variables.
+     *
+     * @param    string $key variable name
+     * @param null $default
+     * @return    mixed
+     */
 	public function &get($key, $default = NULL)
 	{
 		if (isset($this->_data[$key]))
@@ -340,8 +342,8 @@ abstract class Kohana_Twig
 	 *	   // Create the values $food and $beverage in the view
 	 *	   $view->set(array('food' => 'bread', 'beverage' => 'water'));
 	 *
-	 * @param	string	 variable name or an array of variables
-	 * @param	mixed	 value
+	 * @param	string|array $key variable name or an array of variables
+	 * @param	mixed $value value
 	 * @return	View
 	 */
 	public function set($key, $value = NULL)
@@ -370,8 +372,8 @@ abstract class Kohana_Twig
 	 *	   // This reference can be accessed as $ref within the view
 	 *	   $view->bind('ref', $bar);
 	 *
-	 * @param	string	 variable name
-	 * @param	mixed	 referenced variable
+	 * @param	string $key variable name
+	 * @param	mixed $value referenced variable
 	 * @return	View
 	 */
 	public function bind($key, & $value)
@@ -389,7 +391,7 @@ abstract class Kohana_Twig
 	 * overwritten by the local variable.
 	 *
 	 * @throws   View_Exception
-	 * @param    view filename
+	 * @param    string $file filename
 	 * @return   string
 	 */
 	public function render($file = NULL)
@@ -407,4 +409,5 @@ abstract class Kohana_Twig
 		// Combine local and global data and capture the output
 		return $this->_environment->loadTemplate($this->path())->render($this->as_array());
 	}
+    
 }
