@@ -6,13 +6,14 @@
  * Based on Kohana_Twig_URL_TokenParser
  *
  * @package kohana-twig
- * @author MasterCJ
+ * @author  MasterCJ
  */
-class Kohana_Twig_Request_TokenParser extends Twig_TokenParser
-{
+class Kohana_Twig_Request_TokenParser extends Twig_TokenParser {
+
 	/**
-	 * @param Twig_Token $token 
-	 * @return object
+	 * @param Twig_Token $token
+	 *
+	 * @return \Kohana_Twig_Request_Node|\Twig_NodeInterface
 	 * @author MasterCJ
 	 */
 	public function parse(Twig_Token $token)
@@ -35,4 +36,5 @@ class Kohana_Twig_Request_TokenParser extends Twig_TokenParser
 	{
 		return 'request';
 	}
+
 }

@@ -4,13 +4,14 @@
  * Parses a {% url %} tag
  *
  * @package kohana-twig
- * @author Jonathan Geiger
+ * @author  Jonathan Geiger
  */
-class Kohana_Twig_URL_TokenParser extends Twig_TokenParser
-{
+class Kohana_Twig_URL_TokenParser extends Twig_TokenParser {
+
 	/**
-	 * @param Twig_Token $token 
-	 * @return object
+	 * @param Twig_Token $token
+	 *
+	 * @return object|\Twig_NodeInterface
 	 * @author Jonathan Geiger
 	 */
 	public function parse(Twig_Token $token)
@@ -28,14 +29,14 @@ class Kohana_Twig_URL_TokenParser extends Twig_TokenParser
 		}
 		else
 		{
-			$params = FALSE;
+			$params = false;
 		}
-				
+
 		$this->parser->getStream()->expect(Twig_Token::BLOCK_END_TYPE);
 
 		return new Kohana_Twig_URL_Node(array('route' => $route, 'params' => $params), array(), $lineno, $this->getTag());
 	}
-	
+
 	/**
 	 * @return string
 	 * @author Jonathan Geiger
@@ -44,4 +45,5 @@ class Kohana_Twig_URL_TokenParser extends Twig_TokenParser
 	{
 		return 'url';
 	}
+
 }

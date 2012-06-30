@@ -14,6 +14,7 @@ class Kohana_Twig_Environment {
 	 *
 	 * @param string $env
 	 *
+	 * @throws Kohana_View_Exception
 	 * @return Twig_Environment
 	 * @author Jonathan Geiger
 	 */
@@ -27,7 +28,14 @@ class Kohana_Twig_Environment {
 
 			// Create the the loader
 			$twig_loader = $config['loader']['class'];
-			$loader      = new $twig_loader($config['loader']['options']);
+
+			if (class_exists($twig_loader) === false)
+			{
+				throw new Kohana_View_Exception('Twig loader: :twig_loader does not exists', array(
+																																													':twig_loader' => $twig_loader,
+																																										 ));
+			}
+			$loader = new $twig_loader($config['loader']['options']);
 
 			/**
 			 * Set up the instance
@@ -46,9 +54,9 @@ class Kohana_Twig_Environment {
 			// So this dummy condition is there to avoid the bug
 			// The error thrown is "Twig_Sandbox_SecurityError [ 0 ]: Calling "__toString" method on a "Twig" object is not allowed."
 			if (! empty($config['sandboxing']['tags'])
-					&& ! empty($config['sandboxing']['filters'])
-					&& ! empty($config['sandboxing']['methods'])
-					&& ! empty($config['sandboxing']['properties'])
+					and ! empty($config['sandboxing']['filters'])
+							and ! empty($config['sandboxing']['methods'])
+									and ! empty($config['sandboxing']['properties'])
 			)
 			{
 

@@ -242,7 +242,7 @@ abstract class Kohana_Twig {
 		// or some other method seems like it could miss some edge-cases
 		$pathinfo = pathinfo($this->_file);
 
-		if (isset($pathinfo['dirname']) && isset($pathinfo['filename']))
+		if (isset($pathinfo['dirname']) and isset($pathinfo['filename']))
 		{
 			// Chomp off any extension at the end
 			$this->_file = $pathinfo['dirname'] . '/' . $pathinfo['filename'];
@@ -411,7 +411,7 @@ abstract class Kohana_Twig {
 	 */
 	public function render($file = null)
 	{
-		if ((Kohana::$profiling === true) AND class_exists('Profiler', false))
+		if ((Kohana::$profiling === true) and class_exists('Profiler', false))
 		{
 			// Start a new benchmark
 			$benchmark = Profiler::start('Kohana', __FUNCTION__);

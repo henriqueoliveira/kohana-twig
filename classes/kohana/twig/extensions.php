@@ -51,36 +51,35 @@ class Kohana_Twig_Extensions extends Twig_Extension {
 	{
 		return array(
 			// Translation
-			'translate'       => new Twig_Filter_Function('__'),
-			'trans'           => new Twig_Filter_Function('__'),
-			'tr'              => new Twig_Filter_Function('__'),
+			'translate'        => new Twig_Filter_Function('__'),
+			'trans'            => new Twig_Filter_Function('__'),
+			'tr'               => new Twig_Filter_Function('__'),
 
 			// Date and time
-			'timestamp'       => new Twig_Filter_Function('strtotime'),
-			'time_since'			=> new Twig_Filter_Function('Kohana_Twig_Filters::time_since'),
-			'fuzzy_timesince' => new Twig_Filter_Function('Date::fuzzy_span'),
+			'timestamp'        => new Twig_Filter_Function('strtotime'),
+			'time_since'       => new Twig_Filter_Function('Kohana_Twig_Filters::time_since'),
+			'fuzzy_timesince'  => new Twig_Filter_Function('Date::fuzzy_span'),
 
 			// Strings
-			'plural'          => new Twig_Filter_Function('Inflector::plural'),
-			'singular'        => new Twig_Filter_Function('Inflector::singular'),
-			'humanize'        => new Twig_Filter_Function('Inflector::humanize'),
+			'plural'           => new Twig_Filter_Function('Inflector::plural'),
+			'singular'         => new Twig_Filter_Function('Inflector::singular'),
+			'humanize'         => new Twig_Filter_Function('Inflector::humanize'),
 
 			// HTML 
 
-
 			// Numbers
-			'ordinal'         => new Twig_Filter_Function('Num::ordinal'),
-			'num_format'      => new Twig_Filter_Function('Num::format'),
+			'ordinal'          => new Twig_Filter_Function('Num::ordinal'),
+			'num_format'       => new Twig_Filter_Function('Num::format'),
 
 			// Text
-			'auto_link'       => new Twig_Filter_Function('Text::auto_link'),
+			'auto_link'        => new Twig_Filter_Function('Text::auto_link'),
 			'auto_link_emails' => new Twig_Filter_Function('Text::auto_link_emails'),
-			'auto_link_urls'  => new Twig_Filter_Function('Text::auto_link_urls'),
-			'auto_p'          => new Twig_Filter_Function('Text::auto_p'),
-			'bytes'           => new Twig_Filter_Function('Text::bytes'),
+			'auto_link_urls'   => new Twig_Filter_Function('Text::auto_link_urls'),
+			'auto_p'           => new Twig_Filter_Function('Text::auto_p'),
+			'bytes'            => new Twig_Filter_Function('Text::bytes'),
 
-			'limit_chars'     => new Twig_Filter_Function('Text::limit_chars'),
-			'limit_words'     => new Twig_Filter_Function('Text::limit_words'),
+			'limit_chars'      => new Twig_Filter_Function('Text::limit_chars'),
+			'limit_words'      => new Twig_Filter_Function('Text::limit_words'),
 
 			'url_title'        => new Twig_Filter_Function('URL::title'),
 		);

@@ -6,13 +6,14 @@
  * Based on Kohana_Twig_Request_TokenParser
  *
  * @package kohana-twig
- * @author MasterCJ
+ * @author  MasterCJ
  */
-class Kohana_Twig_Profiler_TokenParser extends Twig_TokenParser
-{
+class Kohana_Twig_Profiler_TokenParser extends Twig_TokenParser {
+
 	/**
 	 * @param Twig_Token $token
-	 * @return object
+	 *
+	 * @return \Twig_NodeInterface
 	 * @author Marcel Beck <marcel.beck@mbeck.org>
 	 */
 	public function parse(Twig_Token $token)
@@ -21,7 +22,7 @@ class Kohana_Twig_Profiler_TokenParser extends Twig_TokenParser
 
 		$this->parser->getStream()->expect(Twig_Token::BLOCK_END_TYPE);
 
-		return new Kohana_Twig_Profiler_Node(array(),array(), $lineno, $this->getTag());
+		return new Kohana_Twig_Profiler_Node(array(), array(), $lineno, $this->getTag());
 	}
 
 	/**
@@ -32,4 +33,5 @@ class Kohana_Twig_Profiler_TokenParser extends Twig_TokenParser
 	{
 		return 'profiler';
 	}
+
 }

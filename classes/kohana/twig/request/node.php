@@ -6,14 +6,15 @@
  * Based on Kohana_Twig_URL_Node
  *
  * @package kohana-twig
- * @author MasterCJ
+ * @author  MasterCJ
  */
-class Kohana_Twig_Request_Node extends Twig_Node
-{
+class Kohana_Twig_Request_Node extends Twig_Node {
+
 	/**
 	 * Compiles the tag
 	 *
-	 * @param object $compiler 
+	 * @param Twig_Compiler $compiler
+	 *
 	 * @return void
 	 * @author MasterCJ
 	 */
@@ -21,9 +22,10 @@ class Kohana_Twig_Request_Node extends Twig_Node
 	{
 		// Render weee
 		$compiler
-			->write('echo Request::Factory(')
-			->subcompile($this->getNode('uri'))
-			->write(')->execute()->response')
-			->raw(";\n");
+						->write('echo Request::Factory(')
+						->subcompile($this->getNode('uri'))
+						->write(')->execute()->response')
+						->raw(";\n");
 	}
+
 }

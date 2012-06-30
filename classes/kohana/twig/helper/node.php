@@ -4,23 +4,24 @@
  * Compiler for helpers, which allows a public static methods to be called on a class
  *
  * @package kohana-twig
- * @author Jonathan Geiger
+ * @author  Jonathan Geiger
  */
-class Kohana_Twig_Helper_Node extends Twig_Node
-{
+class Kohana_Twig_Helper_Node extends Twig_Node {
+
 	/**
-	 * @param object $compiler 
+	 * @param Twig_Compiler $compiler
+	 *
 	 * @return void
 	 * @author Jonathan Geiger
 	 */
 	public function compile(Twig_Compiler $compiler)
 	{
 		$params = $this->getNode('expression')->getIterator();
-	
+
 		// Output the route		
-		$compiler->write('echo '.$this->getNodeTag().'::'.$this->getAttribute('method').'(');
-		
-		foreach($params as $i => $row)
+		$compiler->write('echo ' . $this->getNodeTag() . '::' . $this->getAttribute('method') . '(');
+
+		foreach ($params as $i => $row)
 		{
 			$compiler->subcompile($row);
 
@@ -29,7 +30,8 @@ class Kohana_Twig_Helper_Node extends Twig_Node
 				$compiler->write(',');
 			}
 		}
-		
+
 		$compiler->write(')')->raw(';');
 	}
+
 }

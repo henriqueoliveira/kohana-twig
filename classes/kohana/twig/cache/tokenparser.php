@@ -4,24 +4,23 @@
  * Token Parser for {% cache 'some-key' %} Some Text {% endcache %}
  *
  * @package kohana-twig
- * @author Jonathan Geiger
+ * @author  Jonathan Geiger
  */
-class Kohana_Twig_Cache_TokenParser extends Twig_TokenParser
-{
+class Kohana_Twig_Cache_TokenParser extends Twig_TokenParser {
+
 	/**
-	 * @param Twig_Token $token 
-	 * @return object
+	 * @param Twig_Token $token
+	 *
+	 * @return \Twig_NodeInterface
 	 * @author Jonathan Geiger
 	 */
 	public function parse(Twig_Token $token)
 	{
 		$lineno = $token->getLine();
 
-		$vals = array();
-
 		// Format of tag should be {% cache 'name' %}Example Text{% endcache %}
 		$key = $this->parser->getExpressionParser()->parseExpression();
-		
+
 		// Check for arguments for the lifetime
 		if ($this->parser->getStream()->test(Twig_Token::OPERATOR_TYPE, ','))
 		{
@@ -30,18 +29,19 @@ class Kohana_Twig_Cache_TokenParser extends Twig_TokenParser
 		}
 		else
 		{
-			$lifetime = FALSE;
+			$lifetime = false;
 		}
-		
+
 		$this->parser->getStream()->expect(Twig_Token::BLOCK_END_TYPE);
 
 		// Grab the body until an endblock is found
-		$data = $this->parser->subparse(array($this, 'decideBlockEnd'), TRUE);
+		$data = $this->parser->subparse(array($this, 'decideBlockEnd'), true);
 
 		$this->parser->getStream()->expect(Twig_Token::BLOCK_END_TYPE);
 
 		return new Kohana_Twig_Cache_Node(array(
-			'key' => $key, 'lifetime' => $lifetime, 'data' => $data), array(), $lineno, $this->getTag());
+																					 'key' => $key, 'lifetime' => $lifetime, 'data' => $data
+																			), array(), $lineno, $this->getTag());
 	}
 
 	/**
@@ -52,16 +52,18 @@ class Kohana_Twig_Cache_TokenParser extends Twig_TokenParser
 	{
 		return 'cache';
 	}
-	
+
 	/**
 	 * Decides when an endtag has been found for block
 	 *
-	 * @param object $token 
+	 * @param object $token
+	 *
 	 * @return boolean
 	 * @author Jonathan Geiger
 	 */
-	public function decideBlockEnd($token)
+	public function decideBlockEnd(Twig_Token $token)
 	{
 		return $token->test('endcache');
 	}
+
 }

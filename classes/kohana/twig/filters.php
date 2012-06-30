@@ -5,7 +5,7 @@
  * that aren't based directly off of Kohana helper methods
  *
  * @package kohana/twig
- * @author Marcel Beck <marcel.beck@mbeck.org>
+ * @author  Marcel Beck <marcel.beck@mbeck.org>
  */
 class Kohana_Twig_Filters {
 

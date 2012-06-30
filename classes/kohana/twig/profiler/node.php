@@ -4,14 +4,15 @@
  * Parses a {% profiler %} tag
  *
  * @package kohana/twig/profiler
- * @author Marcel Beck <marcel.beck@mbeck.org>
+ * @author  Marcel Beck <marcel.beck@mbeck.org>
  */
-class Kohana_Twig_Profiler_Node extends Twig_Node
-{
+class Kohana_Twig_Profiler_Node extends Twig_Node {
+
 	/**
 	 * Compiles the tag
 	 *
-	 * @param object $compiler 
+	 * @param \Twig_Compiler $compiler
+	 *
 	 * @return void
 	 * @author Marcel Beck <marcel.beck@mbeck.org>
 	 */
@@ -19,7 +20,8 @@ class Kohana_Twig_Profiler_Node extends Twig_Node
 	{
 		// Output the profiler
 		$compiler
-			->write('echo View::factory(\'profiler/stats\')')
-			->raw(";\n");
+						->write('echo View::factory(\'profiler/stats\')')
+						->raw(";\n");
 	}
+
 }
