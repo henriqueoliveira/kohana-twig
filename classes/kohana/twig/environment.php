@@ -4,15 +4,16 @@
  * Twig Loader
  *
  * @package kohana-twig
- * @author Jonathan Geiger
+ * @author  Jonathan Geiger
  */
-class Kohana_Twig_Environment
-{
+class Kohana_Twig_Environment {
+
 	/**
-	 * Loads Twig_Environments based on the 
+	 * Loads Twig_Environments based on the
 	 * configuration key they represent
 	 *
-	 * @param string $env 
+	 * @param string $env
+	 *
 	 * @return Twig_Environment
 	 * @author Jonathan Geiger
 	 */
@@ -20,15 +21,19 @@ class Kohana_Twig_Environment
 	{
 		static $instances;
 
-		if (!isset($instances[$env]))
+		if (! isset($instances[$env]))
 		{
-			$config = Kohana::$config->load('twig.'.$env);
-			
+			$config = Kohana::$config->load('twig.' . $env);
+
 			// Create the the loader
 			$twig_loader = $config['loader']['class'];
-			$loader = new $twig_loader($config['loader']['options']);
+			$loader      = new $twig_loader($config['loader']['options']);
 
-			// Set up the instance
+			/**
+			 * Set up the instance
+			 *
+			 * @var Twig_Environment $twig
+			 */
 			$twig = $instances[$env] = new Twig_Environment($loader, $config['environment']);
 
 			// Load extensions
@@ -40,11 +45,12 @@ class Kohana_Twig_Environment
 			// The sandbox seems buggy
 			// So this dummy condition is there to avoid the bug
 			// The error thrown is "Twig_Sandbox_SecurityError [ 0 ]: Calling "__toString" method on a "Twig" object is not allowed."
-			if(	!empty($config['sandboxing']['tags'])
-				&& !empty($config['sandboxing']['filters'])
-				&& !empty($config['sandboxing']['methods'])
-				&& !empty($config['sandboxing']['properties'])
-			) {
+			if (! empty($config['sandboxing']['tags'])
+					&& ! empty($config['sandboxing']['filters'])
+					&& ! empty($config['sandboxing']['methods'])
+					&& ! empty($config['sandboxing']['properties'])
+			)
+			{
 
 				// Add the sandboxing extension.
 				$policy = new Twig_Sandbox_SecurityPolicy
@@ -61,9 +67,10 @@ class Kohana_Twig_Environment
 
 		return $instances[$env];
 	}
-	
+
 	final private function __construct()
 	{
 		// This is a static class
 	}
+
 }

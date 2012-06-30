@@ -4,45 +4,46 @@
  * Class for managing Twig contexts as arrays
  *
  * @package kohana-twig
- * @author Jonathan Geiger
+ * @author  Jonathan Geiger
  */
-abstract class Kohana_Twig
-{
+abstract class Kohana_Twig {
+
 	/**
 	 * @var array Global data, merged just before compilation
 	 */
 	protected static $_global_data = array();
-	
+
 	/**
 	 * Factory for Twigs
 	 *
-	 * @param string $file 
-	 * @param string $data 
-	 * @param string $env 
+	 * @param string $file
+	 * @param string $data
+	 * @param string $env
+	 *
 	 * @return Twig
 	 * @author Jonathan Geiger
 	 */
-	public static function factory($file = NULL, $data = NULL, $env = 'default')
+	public static function factory($file = null, $data = null, $env = 'default')
 	{
 		return new Twig($file, $data, $env);
 	}
 
 	/**
 	 * Sets a global variable, similar to the set() method.
-	 * 
+	 *
 	 * The name is a bit of a misnomer, since Twig has no real
-	 * concept of "global" variables, just one context available 
+	 * concept of "global" variables, just one context available
 	 * to the entire view structure. However, it is implemented
 	 * to provide an API similar to Kohana_View, as well as to
-	 * allow passing a default set of values (perhaps from the 
+	 * allow passing a default set of values (perhaps from the
 	 * 'context' configuration) that can be overridden by set().
-	 * 
+	 *
 	 * The global data persists across environments.
 	 *
-	 * @param	string|array $key	 variable name or an array of variables
-	 * @param	mixed $value	 value
+	 * @param  string|array $key     variable name or an array of variables
+	 * @param  mixed        $value   value
 	 */
-	public static function set_global($key, $value = NULL)
+	public static function set_global($key, $value = null)
 	{
 		if (is_array($key))
 		{
@@ -60,46 +61,48 @@ abstract class Kohana_Twig
 	/**
 	 * Assigns a global variable by reference, similar to the bind() method.
 	 *
-	 * @param	string $key variable name
-	 * @param	mixed $value referenced variable
-	 * @return	View
+	 * @param  string $key   variable name
+	 * @param  mixed  $value referenced variable
+	 *
+	 * @return  View
 	 */
 	public static function bind_global($key, & $value)
 	{
 		Twig::$_global_data[$key] =& $value;
 	}
-	
+
 	/**
 	 * @var string The file to render
 	 */
 	protected $_file;
-	
+
 	/**
 	 * @var string The extension of the file
 	 */
 	protected $_extension;
-	
+
 	/**
 	 * @var array Local data
 	 */
 	protected $_data = array();
-	
+
 	/**
 	 * @var string The environment the view is attached to
 	 */
 	protected $_environment;
 
-    /**
-     * Constructor
-     *
-     * @param null $file
-     * @param array $data
-     * @param string $env
-     * @author Jonathan Geiger
-     */
-	public function __construct($file = NULL, $data = NULL, $env = 'default')
+	/**
+	 * Constructor
+	 *
+	 * @param null   $file
+	 * @param array  $data
+	 * @param string $env
+	 *
+	 * @author Jonathan Geiger
+	 */
+	public function __construct($file = null, $data = null, $env = 'default')
 	{
-		if ($file !== NULL)
+		if ($file !== null)
 		{
 			$this->set_filename($file);
 		}
@@ -107,33 +110,34 @@ abstract class Kohana_Twig
 		// Allow passing the environment if $data is not needed
 		if (is_string($data))
 		{
-			$env = $data;
-			$data = NULL;
+			$env  = $data;
+			$data = null;
 		}
-		
-		if ($data !== NULL)
+
+		if ($data !== null)
 		{
 			// Add the values to the current data
 			$this->_data = $data + $this->_data;
 		}
-		
+
 		// Allow passing a Twig_Environment
-		if ($env instanceof Twig_Environment == FALSE)
+		if ($env instanceof Twig_Environment == false)
 		{
 			// Load the default extension from the config
-			$this->_extension = Kohana::$config->load('twig.'.$env.'.loader.extension');
-			
+			$this->_extension = Kohana::$config->load('twig.' . $env . '.loader.extension');
+
 			$env = Kohana_Twig_Environment::instance($env);
 		}
-		
+
 		$this->_environment = $env;
 	}
-	
+
 	/**
 	 * Magic method. See get()
 	 *
-	 * @param	string $key	variable name
-	 * @return	mixed
+	 * @param  string $key  variable name
+	 *
+	 * @return  mixed
 	 */
 	public function &__get($key)
 	{
@@ -143,19 +147,21 @@ abstract class Kohana_Twig
 	/**
 	 * Magic method, calls set() with the same parameters.
 	 *
-	 * @param	string $key	variable name
-	 * @param	mixed $value	value
-	 * @return	void
+	 * @param  string $key    variable name
+	 * @param  mixed  $value  value
+	 *
+	 * @return  void
 	 */
 	public function __set($key, $value)
 	{
 		$this->set($key, $value);
 	}
-	
+
 	/**
-	 * Magic method, determines if a variable is set and is not NULL.
+	 * Magic method, determines if a variable is set and is not null.
 	 *
 	 * @param   string $key variable name
+	 *
 	 * @return  boolean
 	 */
 	public function __isset($key)
@@ -167,13 +173,14 @@ abstract class Kohana_Twig
 	 * Magic method, unsets a given variable.
 	 *
 	 * @param   string $key  variable name
+	 *
 	 * @return  void
 	 */
 	public function __unset($key)
 	{
 		unset($this->_data[$key], Twig::$_global_data[$key]);
 	}
-	
+
 	/**
 	 * Magic method, returns the output of render(). If any exceptions are
 	 * thrown, the exception output will be returned instead.
@@ -194,19 +201,21 @@ abstract class Kohana_Twig
 			return '';
 		}
 	}
-	
+
 	/**
 	 * Sets the view filename.
 	 *
 	 * @throws  View_Exception
+	 *
 	 * @param   string $file  filename
+	 *
 	 * @return  Twig
 	 */
 	public function set_filename($file)
 	{
 		// Store the file path locally
 		$this->_file = $file;
-		
+
 		// Split apart at the extension if necessary
 		if ($extension = pathinfo($file, PATHINFO_EXTENSION))
 		{
@@ -215,11 +224,12 @@ abstract class Kohana_Twig
 
 		return $this;
 	}
-	
+
 	/**
 	 * Sets a file exension
 	 *
-	 * @param string $extension 
+	 * @param string $extension
+	 *
 	 * @return Twig
 	 * @author Jonathan Geiger
 	 */
@@ -227,23 +237,23 @@ abstract class Kohana_Twig
 	{
 		// Strip any leading period
 		$extension = ltrim($extension, '.');
-		
+
 		// Use this for regenerating the path, using substr 
 		// or some other method seems like it could miss some edge-cases
 		$pathinfo = pathinfo($this->_file);
-		
+
 		if (isset($pathinfo['dirname']) && isset($pathinfo['filename']))
 		{
 			// Chomp off any extension at the end
-			$this->_file = $pathinfo['dirname'].'/'.$pathinfo['filename'];
+			$this->_file = $pathinfo['dirname'] . '/' . $pathinfo['filename'];
 		}
-		
+
 		// Save this for later
 		$this->_extension = $extension;
-		
+
 		return $this;
 	}
-	
+
 	/**
 	 * Returns the templates filename (sans extension)
 	 *
@@ -254,7 +264,7 @@ abstract class Kohana_Twig
 	{
 		return $this->_file;
 	}
-	
+
 	/**
 	 * Returns the template's extension
 	 *
@@ -265,7 +275,7 @@ abstract class Kohana_Twig
 	{
 		return $this->_extension;
 	}
-	
+
 	/**
 	 * Returns the full path of the current template ($filename + $extension)
 	 *
@@ -276,7 +286,7 @@ abstract class Kohana_Twig
 	{
 		if ($this->_extension)
 		{
-			return $this->_file.'.'.$this->_extension;
+			return $this->_file . '.' . $this->_extension;
 		}
 		else
 		{
@@ -294,7 +304,7 @@ abstract class Kohana_Twig
 	{
 		return $this->_data + Twig::$_global_data;
 	}
-	
+
 	/**
 	 * Returns the environment this view is attached to
 	 *
@@ -306,15 +316,16 @@ abstract class Kohana_Twig
 		return $this->_environment;
 	}
 
-    /**
-     * Searches for the given variable and returns its value.
-     * Local variables will be returned before global variables.
-     *
-     * @param    string $key variable name
-     * @param null $default
-     * @return    mixed
-     */
-	public function &get($key, $default = NULL)
+	/**
+	 * Searches for the given variable and returns its value.
+	 * Local variables will be returned before global variables.
+	 *
+	 * @param    string $key variable name
+	 * @param null      $default
+	 *
+	 * @return    mixed
+	 */
+	public function &get($key, $default = null)
 	{
 		if (isset($this->_data[$key]))
 		{
@@ -329,24 +340,25 @@ abstract class Kohana_Twig
 			return $default;
 		}
 	}
-	
+
 	/**
 	 * Assigns a variable by name. Assigned values will be available as a
 	 * variable within the view file:
 	 *
-	 *	   // This value can be accessed as $foo within the view
-	 *	   $view->set('foo', 'my value');
+	 *     // This value can be accessed as $foo within the view
+	 *     $view->set('foo', 'my value');
 	 *
 	 * You can also use an array to set several values at once:
 	 *
-	 *	   // Create the values $food and $beverage in the view
-	 *	   $view->set(array('food' => 'bread', 'beverage' => 'water'));
+	 *     // Create the values $food and $beverage in the view
+	 *     $view->set(array('food' => 'bread', 'beverage' => 'water'));
 	 *
-	 * @param	string|array $key variable name or an array of variables
-	 * @param	mixed $value value
-	 * @return	View
+	 * @param  string|array $key   variable name or an array of variables
+	 * @param  mixed        $value value
+	 *
+	 * @return  View
 	 */
-	public function set($key, $value = NULL)
+	public function set($key, $value = null)
 	{
 		if (is_array($key))
 		{
@@ -362,19 +374,20 @@ abstract class Kohana_Twig
 
 		return $this;
 	}
-	
+
 	/**
 	 * Assigns a value by reference. The benefit of binding is that values can
 	 * be altered without re-setting them. It is also possible to bind variables
 	 * before they have values. Assigned values will be available as a
 	 * variable within the view file:
 	 *
-	 *	   // This reference can be accessed as $ref within the view
-	 *	   $view->bind('ref', $bar);
+	 *     // This reference can be accessed as $ref within the view
+	 *     $view->bind('ref', $bar);
 	 *
-	 * @param	string $key variable name
-	 * @param	mixed $value referenced variable
-	 * @return	View
+	 * @param  string $key   variable name
+	 * @param  mixed  $value referenced variable
+	 *
+	 * @return  View
 	 */
 	public function bind($key, & $value)
 	{
@@ -382,7 +395,7 @@ abstract class Kohana_Twig
 
 		return $this;
 	}
-	
+
 	/**
 	 * Renders the view object to a string. Global and local data are merged
 	 * and extracted to create local variables within the view file.
@@ -390,24 +403,39 @@ abstract class Kohana_Twig
 	 * Note: Global variables with the same key name as local variables will be
 	 * overwritten by the local variable.
 	 *
-	 * @throws   View_Exception
+	 *
 	 * @param    string $file filename
+	 *
+	 * @throws Kohana_View_Exception
 	 * @return   string
 	 */
-	public function render($file = NULL)
+	public function render($file = null)
 	{
-		if ($file !== NULL)
+		if ((Kohana::$profiling === true) AND class_exists('Profiler', false))
+		{
+			// Start a new benchmark
+			$benchmark = Profiler::start('Kohana', __FUNCTION__);
+		}
+
+		if ($file !== null)
 		{
 			$this->set_filename($file);
 		}
-		
+
 		if (empty($this->_file))
 		{
 			throw new Kohana_View_Exception('You must set the file to use within your view before rendering');
 		}
-		
+
 		// Combine local and global data and capture the output
-		return $this->_environment->loadTemplate($this->path())->render($this->as_array());
+		$result = $this->_environment->loadTemplate($this->path())->render($this->as_array());
+
+		if (isset($benchmark))
+		{
+			// Stop the benchmark
+			Profiler::stop($benchmark);
+		}
+		return $result;
 	}
-    
+
 }
