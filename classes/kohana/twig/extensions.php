@@ -1,14 +1,14 @@
 <?php defined('SYSPATH') or die('No direct script access.');
 
 /**
- * Loads a default set of filters and extensions for 
+ * Loads a default set of filters and extensions for
  * Twig based on Kohana helpers
  *
  * @package kohana-twig
- * @author Jonathan Geiger
+ * @author  Jonathan Geiger
  */
-class Kohana_Twig_Extensions extends Twig_Extension
-{
+class Kohana_Twig_Extensions extends Twig_Extension {
+
 	/**
 	 * Returns the added token parsers
 	 *
@@ -26,7 +26,20 @@ class Kohana_Twig_Extensions extends Twig_Extension
 			new Kohana_Twig_Request_TokenParser(),
 		);
 	}
-	
+
+	/**
+	 * Returns the added functions
+	 *
+	 * @return array
+	 * @author Marcel Beck <marcel.beck@mbeck.org>
+	 */
+	public function getFunctions()
+	{
+		return array(
+			'base_url' => new Twig_Function_Function('URL::base'),
+		);
+	}
+
 	/**
 	 * Returns the added filters
 	 *
@@ -37,38 +50,38 @@ class Kohana_Twig_Extensions extends Twig_Extension
 	{
 		return array(
 			// Translation
-			'translate' => new Twig_Filter_Function('__'),
-			'trans' => new Twig_Filter_Function('__'),
-			'tr' => new Twig_Filter_Function('__'),
-			
-			// Date and time
-			'timestamp' => new Twig_Filter_Function('strtotime'),
-			'timesince' => new Twig_Filter_Function('Kohana_Twig_Filters::timesince'),
-			'fuzzy_timesince' => new Twig_Filter_Function('date::fuzzy_span'),
-			
-			// Strings
-			'plural' => new Twig_Filter_Function('inflector::plural'),
-			'singular' => new Twig_Filter_Function('inflector::singular'),
-			'humanize' => new Twig_Filter_Function('inflector::humanize'),
-			
-			// HTML 
-			'obfuscate' => new Twig_Filter_Function('html::obfuscate'),			
-			
-			// Numbers
-			'ordinal' => new Twig_Filter_Function('Kohana_Twig_Filters::ordinal'),
-			'num_format' => new Twig_Filter_Function('num::format'),
-			
-			// Text
-			'limit_words' => new Twig_Filter_Function('text::limit_words'),
-			'limit_chars' => new Twig_Filter_Function('text::limit_chars'),
-			'auto_link' => new Twig_Filter_Function('text::auto_link'),
-			'auto_p' => new Twig_Filter_Function('text::auto_p'),
-			'bytes' => new Twig_Filter_Function('text::bytes'),
+			'translate'       => new Twig_Filter_Function('__'),
+			'trans'           => new Twig_Filter_Function('__'),
+			'tr'              => new Twig_Filter_Function('__'),
 
-			'urltitle' => new Twig_Filter_Function('url::title'),
+			// Date and time
+			'timestamp'       => new Twig_Filter_Function('strtotime'),
+			'timesince'       => new Twig_Filter_Function('Kohana_Twig_Filters::timesince'),
+			'fuzzy_timesince' => new Twig_Filter_Function('date::fuzzy_span'),
+
+			// Strings
+			'plural'          => new Twig_Filter_Function('inflector::plural'),
+			'singular'        => new Twig_Filter_Function('inflector::singular'),
+			'humanize'        => new Twig_Filter_Function('inflector::humanize'),
+
+			// HTML 
+			'obfuscate'       => new Twig_Filter_Function('html::obfuscate'),
+
+			// Numbers
+			'ordinal'         => new Twig_Filter_Function('Kohana_Twig_Filters::ordinal'),
+			'num_format'      => new Twig_Filter_Function('num::format'),
+
+			// Text
+			'limit_words'     => new Twig_Filter_Function('text::limit_words'),
+			'limit_chars'     => new Twig_Filter_Function('text::limit_chars'),
+			'auto_link'       => new Twig_Filter_Function('text::auto_link'),
+			'auto_p'          => new Twig_Filter_Function('text::auto_p'),
+			'bytes'           => new Twig_Filter_Function('text::bytes'),
+
+			'urltitle'        => new Twig_Filter_Function('url::title'),
 		);
 	}
-	
+
 	/**
 	 * @return string
 	 * @author Jonathan Geiger
@@ -77,4 +90,5 @@ class Kohana_Twig_Extensions extends Twig_Extension
 	{
 		return 'kohana_twig';
 	}
+
 }
