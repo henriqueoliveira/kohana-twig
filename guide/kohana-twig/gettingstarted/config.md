@@ -18,7 +18,7 @@ auto_reload         | Update the template when the source code changes
 
 Sandboxing can be enabled globally or can be used on a per include basis as follows:
 
-	{% include "template.html" sandboxed %}
+	{% include "template.twig" sandboxed %}
 
 For more information on sandboxing please check the
 [designer](http://www.twig-project.org/book/02-Twig-for-Template-Designers)

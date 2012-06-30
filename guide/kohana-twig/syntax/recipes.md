@@ -11,7 +11,7 @@ the request is made via Ajax and choose the layout accordingly:
 
 .. code-block:: jinja
 
-    {% extends request.ajax ? "base_ajax.html" : "base.html" %}
+    {% extends request.ajax ? "base_ajax.twig" : "base.twig" %}
 
     {% block content %}
         This is the content to be displayed.
@@ -25,9 +25,9 @@ instance, the name can depend on the value of a variable:
 
 .. code-block:: jinja
 
-    {% include var ~ '_foo.html' %}
+    {% include var ~ '_foo.twig' %}
 
-If ``var`` evaluates to ``index``, the ``index_foo.html`` template will be
+If ``var`` evaluates to ``index``, the ``index_foo.twig`` template will be
 rendered.
 
 As a matter of fact, the template name can be any valid expression, such as
@@ -35,7 +35,7 @@ the following:
 
 .. code-block:: jinja
 
-    {% include var|default('index') ~ '_foo.html' %}
+    {% include var|default('index') ~ '_foo.twig' %}
 
 Overriding a Template that also extends itself
 ----------------------------------------------

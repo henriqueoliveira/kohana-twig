@@ -8,8 +8,8 @@ Synopsis
 --------
 
 A template is simply a text file. It can generate any text-based format (HTML,
-XML, CSV, LaTeX, etc.). It doesn't have a specific extension, ``.html`` or
-``.xml`` are just fine.
+XML, CSV, LaTeX, etc.). It doesn't have a specific extension, ``.twig`` or
+``.html`` are just fine.
 
 A template contains **variables** or **expressions**, which get replaced with
 values when the template is evaluated, and tags, which control the logic of
@@ -202,7 +202,7 @@ starting with an example.
 Base Template
 ~~~~~~~~~~~~~
 
-This template, which we'll call ``base.html``, defines a simple HTML skeleton
+This template, which we'll call ``base.twig``, defines a simple HTML skeleton
 document that you might use for a simple two-column page. It's the job of
 "child" templates to fill the empty blocks with content:
 
@@ -237,7 +237,7 @@ A child template might look like this:
 
 .. code-block:: jinja
 
-    {% extends "base.html" %}
+    {% extends "base.twig" %}
 
     {% block title %}Index{% endblock %}
     {% block head %}
@@ -264,7 +264,7 @@ filename. You can access templates in subdirectories with a slash:
 
 .. code-block:: jinja
 
-    {% extends "layout/default.html" %}
+    {% extends "layout/default.twig" %}
 
 But this behavior can depend on the application embedding Twig. Note that
 since the child template doesn't define the ``footer`` block, the value from
@@ -373,10 +373,10 @@ also possible to make the inheritance mechanism conditional:
 
 .. code-block:: jinja
 
-    {% extends standalone ? "minimum.html" : "base.html" %}
+    {% extends standalone ? "minimum.twig" : "base.twig" %}
 
-In this example, the template will extend the "minimum.html" layout template
-if the ``standalone`` variable evaluates to ``true``, and "base.html"
+In this example, the template will extend the "minimum.twig" layout template
+if the ``standalone`` variable evaluates to ``true``, and "base.twig"
 otherwise.
 
 Import Context Behavior
@@ -390,10 +390,10 @@ in the template:
 .. code-block:: jinja
 
     {% for box in boxes %}
-      {% include "render_box.html" %}
+      {% include "render_box.twig" %}
     {% endfor %}
 
-The included template ``render_box.html`` is able to access ``box``.
+The included template ``render_box.twig`` is able to access ``box``.
 
 HTML Escaping
 -------------
@@ -650,9 +650,9 @@ used (see the Import section for more information):
 
 .. code-block:: jinja
 
-    {% import "forms.html" as forms %}
+    {% import "forms.twig" as forms %}
 
-The above ``import`` call imports the "forms.html" file (which can contain only
+The above ``import`` call imports the "forms.httwigml" file (which can contain only
 macros, or a template and some macros), and import the functions as items of
 the ``forms`` variable.
 
@@ -689,16 +689,16 @@ When the macro is defined in another file, you need to import it:
 
 .. code-block:: jinja
 
-    {# forms.html #}
+    {# forms.twig #}
 
     {% macro input(name, value, type, size) %}
       <input type="{{ type|default('text') }}" name="{{ name }}" value="{{ value|e }}" size="{{ size|default(20) }}" />
     {% endmacro %}
 
-    {# shortcuts.html #}
+    {# shortcuts.twig #}
 
     {% macro wrapped_input(name, value, type, size) %}
-        {% import "forms.html" as forms %}
+        {% import "forms.twig" as forms %}
         <div class="field">
             {{ forms.input(name, value, type, size) }}
         </div>
@@ -777,9 +777,9 @@ rendered content of that file into the current namespace:
 
 .. code-block:: jinja
 
-    {% include 'header.html' %}
+    {% include 'header.twig' %}
       Body
-    {% include 'footer.html' %}
+    {% include 'footer.twig' %}
 
 Included templates have access to the variables of the active context.
 
@@ -815,7 +815,7 @@ The template name can be any valid Twig expression:
 .. code-block:: jinja
 
     {% include some_var %}
-    {% include ajax ? 'ajax.html' : 'not_ajax.html' %}
+    {% include ajax ? 'ajax.twig' : 'not_ajax.twig' %}
 
 And if the expression evaluates to a ``Twig_Template`` object, Twig will use it
 directly::
@@ -835,7 +835,7 @@ different templates and get imported from there.
 There are two ways to import templates. You can import the complete template
 into a variable or request specific macros from it.
 
-Imagine we have a helper module that renders forms (called ``forms.html``):
+Imagine we have a helper module that renders forms (called ``forms.twig``):
 
 .. code-block:: jinja
 
@@ -852,7 +852,7 @@ That way you can access the attributes:
 
 .. code-block:: jinja
 
-    {% import 'forms.html' as forms %}
+    {% import 'forms.twig' as forms %}
 
     <dl>
         <dt>Username</dt>
@@ -867,7 +867,7 @@ namespace:
 
 .. code-block:: jinja
 
-    {% from 'forms.html' import input as input_field, textarea %}
+    {% from 'forms.twig' import input as input_field, textarea %}
 
     <dl>
         <dt>Username</dt>
@@ -882,7 +882,7 @@ file; use the special ``_self`` variable instead:
 
 .. code-block:: jinja
 
-    {# index.html template #}
+    {# index.twig template #}
 
     {% macro textarea(name, value, rows) %}
         <textarea name="{{ name }}" rows="{{ rows|default(10) }}" cols="{{ cols|default(40) }}">{{ value|e }}</textarea>
@@ -894,7 +894,7 @@ But you can still create an alias by importing from the ``_self`` variable:
 
 .. code-block:: jinja
 
-    {# index.html template #}
+    {# index.twig template #}
 
     {% macro textarea(name, value, rows) %}
         <textarea name="{{ name }}" rows="{{ rows|default(10) }}" cols="{{ cols|default(40) }}">{{ value|e }}</textarea>

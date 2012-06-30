@@ -3,7 +3,7 @@
 The twig module comes with a template controller called which you can easily
 extend. It works similarly to the stock `Controller_Template`.
 
-[!!] Template names are generated automatically by default. The example below would look for welcome/index.html
+[!!] Template names are generated automatically by default. The example below would look for welcome/index.twig
 
 	<?php defined('SYSPATH') or die('No direct script access.');
 
