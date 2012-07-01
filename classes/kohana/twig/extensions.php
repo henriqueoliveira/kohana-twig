@@ -37,7 +37,7 @@ class Kohana_Twig_Extensions extends Twig_Extension {
 	public function getFunctions()
 	{
 		return array(
-			'url_base' => new Twig_Function_Function('URL::base'),
+			'url_site' => new Twig_Function_Function('URL::site'),
 		);
 	}
 
