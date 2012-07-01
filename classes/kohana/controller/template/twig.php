@@ -2,7 +2,7 @@
 /**
  * Twig template controller
  *
- * @package    Kohana-Twig
+ * @package    Kohana/Twig/Controller
  * @author     John Heathco <jheathco@gmail.com>
  */
 abstract class Kohana_Controller_Template_Twig extends Controller {

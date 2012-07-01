@@ -3,8 +3,9 @@
 /**
  * Parses a {% profiler %} tag
  *
- * @package kohana/twig/profiler
- * @author  Marcel Beck <marcel.beck@mbeck.org>
+ * @package   Kohana/Twig/Profiler
+ * @author    Marcel Beck <marcel.beck@mbeck.org>
+ * @copyright (c) 2012 Marcel Beck
  */
 class Kohana_Twig_Profiler_Node extends Twig_Node {
 

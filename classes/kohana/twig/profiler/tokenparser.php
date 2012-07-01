@@ -5,8 +5,9 @@
  *
  * Based on Kohana_Twig_Request_TokenParser
  *
- * @package kohana-twig
- * @author  MasterCJ
+ * @package   Kohana/Twig/Profiler
+ * @author    Marcel Beck <marcel.beck@mbeck.org>
+ * @copyright (c) 2012 Marcel Beck
  */
 class Kohana_Twig_Profiler_TokenParser extends Twig_TokenParser {
 

@@ -3,7 +3,7 @@
 /**
  * Token Parser for {% cache 'some-key' %} Some Text {% endcache %}
  *
- * @package kohana-twig
+ * @package Kohana/Twig/Cache
  * @author  Jonathan Geiger
  */
 class Kohana_Twig_Cache_TokenParser extends Twig_TokenParser {
@@ -56,9 +56,9 @@ class Kohana_Twig_Cache_TokenParser extends Twig_TokenParser {
 	/**
 	 * Decides when an endtag has been found for block
 	 *
-	 * @param object $token
+	 * @param \Twig_Token $token
 	 *
-	 * @return boolean
+	 * @return bool
 	 * @author Jonathan Geiger
 	 */
 	public function decideBlockEnd(Twig_Token $token)

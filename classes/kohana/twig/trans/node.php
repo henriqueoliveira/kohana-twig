@@ -6,14 +6,14 @@
  * Based off of the core twig code for the trans tag, but modified
  * to use Kohana's __() function.
  *
- * @package kohana-twig
+ * @package Kohana/Twig/Trans
  */
 class Kohana_Twig_Trans_Node extends Twig_Node {
 
 	/**
 	 * Compiles the node to PHP.
 	 *
-	 * @param Twig_Compiler A Twig_Compiler instance
+	 * @param Twig_Compiler $compiler A Twig_Compiler instance
 	 */
 	public function compile(Twig_Compiler $compiler)
 	{

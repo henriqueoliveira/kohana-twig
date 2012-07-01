@@ -4,7 +4,7 @@
  * Loads a default set of filters and extensions for
  * Twig based on Kohana helpers
  *
- * @package kohana-twig
+ * @package Kohana/Twig
  * @author  Jonathan Geiger
  */
 class Kohana_Twig_Extensions extends Twig_Extension {

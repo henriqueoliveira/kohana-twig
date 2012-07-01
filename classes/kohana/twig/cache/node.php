@@ -3,7 +3,7 @@
 /**
  * Compiler for {% cache "some-key" %} Some text {% endcache %}
  *
- * @package kohana-twig
+ * @package Kohana/Twig/Cache
  * @author  Jonathan Geiger
  */
 class Kohana_Twig_Cache_Node extends Twig_Node {

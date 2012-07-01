@@ -3,7 +3,7 @@
 /**
  * Compiler for helpers, which allows a public static methods to be called on a class
  *
- * @package kohana-twig
+ * @package Kohana/Twig/Helper
  * @author  Jonathan Geiger
  */
 class Kohana_Twig_Helper_Node extends Twig_Node {

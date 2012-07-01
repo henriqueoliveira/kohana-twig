@@ -4,7 +4,7 @@
  * This is a static class that houses code for a few filters
  * that aren't based directly off of Kohana helper methods
  *
- * @package kohana/twig
+ * @package Kohana/Twig
  * @author  Marcel Beck <marcel.beck@mbeck.org>
  */
 class Kohana_Twig_Filters {

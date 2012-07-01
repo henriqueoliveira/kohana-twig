@@ -13,7 +13,7 @@
  *
  * The body of the tag will be trim()ed before being passed to __().
  *
- * @package kohana-twig
+ * @package Kohana/Twig/Trans
  */
 class Kohana_Twig_Trans_TokenParser extends Twig_TokenParser {
 

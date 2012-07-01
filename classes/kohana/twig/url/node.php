@@ -3,7 +3,7 @@
 /**
  * Parses a {% url %} tag
  *
- * @package kohana-twig
+ * @package Kohana/Twig
  * @author  Jonathan Geiger
  */
 class Kohana_Twig_Url_Node extends Twig_Node {

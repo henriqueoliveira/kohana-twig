@@ -3,7 +3,7 @@
 /**
  * Class for managing Twig contexts as arrays
  *
- * @package kohana-twig
+ * @package Kohana/Twig
  * @author  Jonathan Geiger
  */
 abstract class Kohana_Twig {

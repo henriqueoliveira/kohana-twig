@@ -3,7 +3,7 @@
 /**
  * Parses a {% url %} tag
  *
- * @package kohana-twig
+ * @package Kohana/Twig/URL
  * @author  Jonathan Geiger
  */
 class Kohana_Twig_URL_TokenParser extends Twig_TokenParser {
@@ -11,7 +11,7 @@ class Kohana_Twig_URL_TokenParser extends Twig_TokenParser {
 	/**
 	 * @param Twig_Token $token
 	 *
-	 * @return object|\Twig_NodeInterface
+	 * @return \Twig_NodeInterface
 	 * @author Jonathan Geiger
 	 */
 	public function parse(Twig_Token $token)

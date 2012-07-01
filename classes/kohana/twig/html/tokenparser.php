@@ -3,7 +3,7 @@
 /**
  * Token Parser for {% form.method %}
  *
- * @package kohana-twig
+ * @package Kohana/Twig/HTML
  * @author  Jonathan Geiger
  */
 class Kohana_Twig_HTML_TokenParser extends Kohana_Twig_Helper_TokenParser {

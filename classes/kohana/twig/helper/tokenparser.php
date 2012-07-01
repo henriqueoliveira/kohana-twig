@@ -3,7 +3,7 @@
 /**
  * Parser for {% class.method %} style tags
  *
- * @package kohana-twig
+ * @package Kohana/Twig/Helper
  * @author  Jonathan Geiger
  */
 abstract class Kohana_Twig_Helper_TokenParser extends Twig_TokenParser {

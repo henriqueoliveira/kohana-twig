@@ -5,7 +5,7 @@
  *
  * Based on Kohana_Twig_URL_Node
  *
- * @package kohana-twig
+ * @package Kohana/Twig/Request
  * @author  MasterCJ
  */
 class Kohana_Twig_Request_Node extends Twig_Node {

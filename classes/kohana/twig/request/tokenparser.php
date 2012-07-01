@@ -5,7 +5,7 @@
  *
  * Based on Kohana_Twig_URL_TokenParser
  *
- * @package kohana-twig
+ * @package Kohana/Twig/Request
  * @author  MasterCJ
  */
 class Kohana_Twig_Request_TokenParser extends Twig_TokenParser {
