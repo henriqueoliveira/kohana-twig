@@ -6,7 +6,7 @@
  * Based on Kohana_Twig_Request_TokenParser
  *
  * @package   Kohana/Twig/Profiler
- * @author    Marcel Beck <marcel.beck@mbeck.org>
+ * @author    Marcel Beck <marcel.beck@outlook.com>
  * @copyright (c) 2012 Marcel Beck
  */
 class Kohana_Twig_Profiler_TokenParser extends Twig_TokenParser {
@@ -15,7 +15,7 @@ class Kohana_Twig_Profiler_TokenParser extends Twig_TokenParser {
 	 * @param Twig_Token $token
 	 *
 	 * @return \Twig_NodeInterface
-	 * @author Marcel Beck <marcel.beck@mbeck.org>
+	 * @author Marcel Beck <marcel.beck@outlook.com>
 	 */
 	public function parse(Twig_Token $token)
 	{
@@ -28,7 +28,7 @@ class Kohana_Twig_Profiler_TokenParser extends Twig_TokenParser {
 
 	/**
 	 * @return string
-	 * @author Marcel Beck <marcel.beck@mbeck.org>
+	 * @author Marcel Beck <marcel.beck@outlook.com>
 	 */
 	public function getTag()
 	{

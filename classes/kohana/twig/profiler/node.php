@@ -4,7 +4,7 @@
  * Parses a {% profiler %} tag
  *
  * @package   Kohana/Twig/Profiler
- * @author    Marcel Beck <marcel.beck@mbeck.org>
+ * @author    Marcel Beck <marcel.beck@outlook.com>
  * @copyright (c) 2012 Marcel Beck
  */
 class Kohana_Twig_Profiler_Node extends Twig_Node {
@@ -15,7 +15,7 @@ class Kohana_Twig_Profiler_Node extends Twig_Node {
 	 * @param \Twig_Compiler $compiler
 	 *
 	 * @return void
-	 * @author Marcel Beck <marcel.beck@mbeck.org>
+	 * @author Marcel Beck <marcel.beck@outlook.com>
 	 */
 	public function compile(Twig_Compiler $compiler)
 	{

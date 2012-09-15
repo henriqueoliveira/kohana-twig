@@ -5,7 +5,7 @@
  * that aren't based directly off of Kohana helper methods
  *
  * @package Kohana/Twig
- * @author  Marcel Beck <marcel.beck@mbeck.org>
+ * @author  Marcel Beck <marcel.beck@outlook.com>
  */
 class Kohana_Twig_Filters {
 
@@ -19,7 +19,7 @@ class Kohana_Twig_Filters {
 	 *
 	 * @return string
 	 *
-	 * @author Marcel Beck <marcel.beck@mbeck.org>
+	 * @author Marcel Beck <marcel.beck@outlook.com>
 	 */
 	public static function time_since($i_datetime1, $i_datetime2 = null)
 	{

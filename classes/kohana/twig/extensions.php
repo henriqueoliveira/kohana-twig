@@ -32,7 +32,7 @@ class Kohana_Twig_Extensions extends Twig_Extension {
 	 * Returns the added functions
 	 *
 	 * @return array
-	 * @author Marcel Beck <marcel.beck@mbeck.org>
+	 * @author Marcel Beck <marcel.beck@outlook.com>
 	 */
 	public function getFunctions()
 	{
@@ -65,7 +65,7 @@ class Kohana_Twig_Extensions extends Twig_Extension {
 			'singular'         => new Twig_Filter_Function('Inflector::singular'),
 			'humanize'         => new Twig_Filter_Function('Inflector::humanize'),
 
-			// HTML 
+			// HTML
 
 			// Numbers
 			'ordinal'          => new Twig_Filter_Function('Num::ordinal'),
