@@ -27,9 +27,9 @@ abstract class Kohana_Controller_Template_Twig extends Controller {
 	 *
 	 * @return void
 	 */
-	public function before()
+	public function __construct(Request $request, Response $response)
 	{
-		parent::before();
+		parent::__construct($request, $response);
 
 		if (empty($this->template))
 		{
