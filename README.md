@@ -25,27 +25,27 @@ This fork contains the following improvements.
 Installation
 ------------
 
-1. `git submodule add git://github.com/nexeck/kohana-twig.git modules/twig`
+1. `git submodule add git://github.com/henriqueoliveira/kohana-twig.git modules/twig`
 2. `cd modules/twig && git submodule update --init`
 3. Enable twig in your bootstrap.php file
-4. Extend `Controller`
+4. Extend `Controller\_Template\_Twig`
 
 Usage
 -----
 
-Pretty similar to using the Controller\_Template class.
+Pretty similar to using the Controller\_Template\_Twig class.
 
-    class Controller_Example extends Controller
+    class Controller_Example extends Controller\_Template\_Twig
     {
       // Template names are generated automatically if not specified. So this
-      // action would map to: example/index.html
+      // action would map to: example/index.twig
       public function action_index()
       {
-        $this->variable = "Hello World";
+        $this->template->variable = "Hello World";
       }
     }
 
 Not Happy?
 ---------
 
-[file a bug report](git://github.com/nexeck/kohana-twig/issues)
+[file a bug report](git://github.com/henriqueoliveira/kohana-twig/issues)
