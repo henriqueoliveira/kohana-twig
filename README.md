@@ -28,14 +28,14 @@ Installation
 1. `git submodule add git://github.com/henriqueoliveira/kohana-twig.git modules/twig`
 2. `cd modules/twig && git submodule update --init`
 3. Enable twig in your bootstrap.php file
-4. Extend `Controller\_Template\_Twig`
+4. Extend `Controller_Template_Twig`
 
 Usage
 -----
 
 Pretty similar to using the Controller\_Template\_Twig class.
 
-    class Controller_Example extends Controller\_Template\_Twig
+    class Controller_Example extends Controller_Template_Twig
     {
       // Template names are generated automatically if not specified. So this
       // action would map to: example/index.twig
