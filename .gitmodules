@@ -3,4 +3,4 @@
 	url = http://github.com/fabpot/Twig.git
 [submodule "vendor/Twig-extensions"]
 	path = vendor/Twig-extensions
-	url = git@github.com:fabpot/Twig-extensions.git
+	url = http://github.com/fabpot/Twig-extensions.git
