@@ -22,6 +22,8 @@ abstract class Kohana_Controller_Template_Twig extends Controller {
 	 */
 	public $template;
 
+	public $folder = '';
+
 	/**
 	 * Setup view
 	 *
@@ -44,6 +46,7 @@ abstract class Kohana_Controller_Template_Twig extends Controller {
 			}
 		}
 
+		$this->template = $this->folder.$this->template;
 		if ($this->auto_render)
 		{
 			// Load the twig template.
