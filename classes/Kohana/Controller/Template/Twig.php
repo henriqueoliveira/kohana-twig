@@ -5,7 +5,7 @@
  * @package    Kohana/Twig/Controller
  * @author     John Heathco <jheathco@gmail.com>
  */
-abstract class Kohana_Controller_Template_Twig extends Controller {
+abstract class Kohana_Controller_Template_Twig extends Kohana_Controller {
 
 	/**
 	 * @var Twig_Environment
